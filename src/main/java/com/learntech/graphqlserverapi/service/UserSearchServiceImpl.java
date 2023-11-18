@@ -4,8 +4,7 @@ import com.learntech.graphqlserverapi.model.Address;
 import com.learntech.graphqlserverapi.model.Phone;
 import com.learntech.graphqlserverapi.model.SearchInput;
 import com.learntech.graphqlserverapi.model.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,16 +17,15 @@ import java.util.List;
  * @author Uthiraraj Saminathan
  */
 @Service
+@Slf4j
 public class UserSearchServiceImpl implements UserSearchService {
-
-    private static final Logger logger = LoggerFactory.getLogger(UserSearchServiceImpl.class);
 
     /**
      * @return
      */
     @Override
     public List<User> searchUser(SearchInput searchInput) {
-        logger.info("searchUser Starts");
+        log.info("searchUser Starts");
         return Arrays.asList(getUser());
     }
 
@@ -40,7 +38,7 @@ public class UserSearchServiceImpl implements UserSearchService {
         return getUser();
     }
 
-    private User getUser(){
+    private User getUser() {
         User user = new User();
         user.setId(1);
         user.setFirstName("Jhon");

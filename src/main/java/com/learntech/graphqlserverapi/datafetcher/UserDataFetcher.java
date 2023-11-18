@@ -1,14 +1,13 @@
 package com.learntech.graphqlserverapi.datafetcher;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.learntech.graphqlserverapi.model.SearchInput;
 import com.learntech.graphqlserverapi.model.User;
-import com.learntech.graphqlserverapi.model.UserResponse;
 import com.learntech.graphqlserverapi.service.UserSearchService;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -19,9 +18,9 @@ import java.util.List;
  * @author Uthiraraj Saminathan
  */
 @DgsComponent
+@Slf4j
 public class UserDataFetcher {
 
-    private static Logger logger = LoggerFactory.getLogger(UserDataFetcher.class);
     private final UserSearchService userSearchService;
 
     public UserDataFetcher(UserSearchService userSearchService) {
@@ -29,17 +28,19 @@ public class UserDataFetcher {
     }
 
     @DgsQuery
-    public Mono<UserResponse> searchUser(@InputArgument SearchInput searchInput){
-        logger.info("searchUser() Starts");
+    public Mono<List<User>> users(@InputArgument SearchInput searchInput) throws JsonProcessingException {
+        log.info("users() Starts");
+        log.info("First Name {}", searchInput.getFirstName());
+        log.info("Last Name {}", searchInput.getLastName());
+
         List<User> users = userSearchService.searchUser(searchInput);
-        logger.info("searchUser() Ends");
-        return Mono.just(new UserResponse(users));
+        return Mono.just(users);
     }
 
     @DgsQuery
-    public Mono<User> searchByUserId(@InputArgument Integer id){
+    public Mono<User> user(@InputArgument Integer id){
+        log.info("user() Starts");
         User user = userSearchService.searchById(id);
         return Mono.just(user);
     }
-
 }

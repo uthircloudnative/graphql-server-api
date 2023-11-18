@@ -1,8 +1,8 @@
 #scalar Date
 
 type Query {
-    searchUser(searchInput: SearchInput) : UserResponse
-    searchByUserId(id : ID): User
+    users(searchInput: SearchInput) : [User]
+    user(id : ID): User
 }
 
 type UserResponse{
@@ -11,8 +11,8 @@ type UserResponse{
 
 type User {
     id: ID
-    firstName: String
-    lastName: String
+    firstName: String!
+    lastName: String!
     dateOfBirth: String
     gender: String
     address: [Address]

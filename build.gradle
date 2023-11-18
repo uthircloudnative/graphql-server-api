@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.learntech'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0-SNAPSHOT'
 
 java {
 	sourceCompatibility = '11'
@@ -32,15 +32,15 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:5.5.5"))
 	implementation 'com.netflix.graphql.dgs:graphql-dgs-webflux-starter:5.5.5'
-	implementation 'com.graphql-java:graphql-java-extended-scalars:19.1'
+	//implementation 'com.graphql-java:graphql-java-extended-scalars:19.1'
 	//implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:11.1.0'
 	//implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter:5.5.5'
 	//implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-boot-oss-autoconfigure:5.5.5'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'io.projectreactor:reactor-test'
+	//testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//testImplementation 'io.projectreactor:reactor-test'
 }
 
 tasks.named('test') {
