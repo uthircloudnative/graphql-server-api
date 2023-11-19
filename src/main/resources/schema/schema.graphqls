@@ -2,7 +2,7 @@
 
 type Query {
     users(searchInput: SearchInput) : [User]
-    user(id : ID): User
+    user(id : ID!): User
 }
 
 type UserResponse{
