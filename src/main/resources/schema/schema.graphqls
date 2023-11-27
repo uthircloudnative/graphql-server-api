@@ -10,7 +10,7 @@ type UserResponse{
 }
 
 type User {
-    id: ID
+    id: ID!
     firstName: String!
     lastName: String!
     dateOfBirth: String

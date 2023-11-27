@@ -4,6 +4,7 @@ import com.learntech.graphqlserverapi.model.SearchInput;
 import com.learntech.graphqlserverapi.model.User;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * UserSearchService
@@ -14,5 +15,5 @@ public interface UserSearchService {
 
     List<User> searchUser(SearchInput searchInput);
 
-    User searchById(Integer id);
+    User searchById(UUID id);
 }

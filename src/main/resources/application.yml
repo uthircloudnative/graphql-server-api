@@ -1,0 +1,37 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+  graphql:
+    graphiql:
+      #http://localhost:8080/graphiql
+      enabled: true
+  datasource:
+     url: jdbc:h2:mem:testdb;MODE=PostgreSQL
+     driverClassName: org.h2.Driver
+     username: sa
+     password: password
+
+---
+spring:
+  profiles: test
+  graphql:
+    graphiql:
+      #http://localhost:8080/graphiql
+      enabled: true
+  datasource:
+    url: '<Real test region PostgresSQL DB url>'
+    username: '<DB User Name>'
+    password: '<DB Password>'
+
+---
+spring:
+  profiles: prod
+  graphql:
+    graphiql:
+      #http://localhost:8080/graphiql
+      enabled: true
+  datasource:
+    url: '<Real prod region PostgresSQL DB url>'
+    username: '<DB User Name>'
+    password: '<DB Password>'
