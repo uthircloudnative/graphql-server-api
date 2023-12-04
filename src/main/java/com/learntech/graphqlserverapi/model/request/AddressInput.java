@@ -1,18 +1,16 @@
-package com.learntech.graphqlserverapi.model;
+package com.learntech.graphqlserverapi.model.request;
 
 import lombok.Data;
 
-import java.util.UUID;
-
 /**
- * Address
+ * AddressInput
  *
  * @author Uthiraraj Saminathan
  */
 @Data
-public class Address {
+public class AddressInput {
 
-    private UUID id;
+    private String id;
     private String type;
     private String street1;
     private String street2;

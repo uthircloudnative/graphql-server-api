@@ -1,9 +1,8 @@
 package com.learntech.graphqlserverapi.config;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-//import org.
+
 
 /**
  * H2DBConfiguration

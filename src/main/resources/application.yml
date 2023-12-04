@@ -14,7 +14,9 @@ spring:
 
 ---
 spring:
-  profiles: test
+  config:
+    activate:
+      on-profile: test
   graphql:
     graphiql:
       #http://localhost:8080/graphiql
@@ -26,7 +28,9 @@ spring:
 
 ---
 spring:
-  profiles: prod
+  config:
+    activate:
+      on-profile: prod
   graphql:
     graphiql:
       #http://localhost:8080/graphiql

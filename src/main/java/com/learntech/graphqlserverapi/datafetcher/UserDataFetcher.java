@@ -1,10 +1,13 @@
 package com.learntech.graphqlserverapi.datafetcher;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.learntech.graphqlserverapi.model.DeleteUser;
 import com.learntech.graphqlserverapi.model.SearchInput;
 import com.learntech.graphqlserverapi.model.User;
+import com.learntech.graphqlserverapi.model.request.UserInput;
 import com.learntech.graphqlserverapi.service.UserSearchService;
 import com.netflix.graphql.dgs.DgsComponent;
+import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
 import lombok.extern.slf4j.Slf4j;
@@ -44,5 +47,23 @@ public class UserDataFetcher {
         log.info("user() Starts");
         User user = userSearchService.searchById(id);
         return Mono.just(user);
+    }
+
+    @DgsMutation
+    public Mono<User> addUser(@InputArgument UserInput userInput){
+        User user = userSearchService.addUser(userInput);
+        return Mono.just(user);
+    }
+
+    @DgsMutation
+    public Mono<User> updateUser(@InputArgument UserInput userInput){
+        User user = userSearchService.updateUser(userInput);
+        return Mono.just(user);
+    }
+
+    @DgsMutation
+    public Mono<DeleteUser> deleteUser(@InputArgument UUID id){
+        DeleteUser deleteUser = userSearchService.deleteUser(id);
+        return Mono.just(deleteUser);
     }
 }

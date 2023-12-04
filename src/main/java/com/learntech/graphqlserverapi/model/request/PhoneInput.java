@@ -1,18 +1,16 @@
-package com.learntech.graphqlserverapi.model;
+package com.learntech.graphqlserverapi.model.request;
 
 import lombok.Data;
 
-import java.util.UUID;
-
 /**
- * Phone
+ * PhoneInput
  *
  * @author Uthiraraj Saminathan
  */
 @Data
-public class Phone {
+public class PhoneInput {
 
-    private UUID id;
+    private String id;
     private String type;
     private String number;
     private String countryCode;

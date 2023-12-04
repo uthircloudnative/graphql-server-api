@@ -1,12 +1,46 @@
 #scalar Date
 
+
 type Query {
     users(searchInput: SearchInput) : [User]
     user(id : ID!): User
 }
 
+type Mutation{
+  addUser(userInput: UserInput) : User
+  updateUser(userInput: UserInput) : User
+  deleteUser(id : ID!) : DeleteUser
+}
+
 type UserResponse{
     users: [User]
+}
+
+input UserInput {
+    id: ID
+    firstName: String!
+    lastName: String!
+    dateOfBirth: String
+    gender: String
+    address: [AddressInput]
+    phone: [PhoneInput]
+}
+
+input AddressInput {
+    id: ID
+    type: String
+    street1: String
+    street2: String
+    city: String
+    state: String
+    zip: Int
+}
+
+input PhoneInput {
+    id: ID
+    type: String
+    number: String
+    countryCode: String
 }
 
 type User {
@@ -20,6 +54,7 @@ type User {
 }
 
 type Address {
+    id: ID!
     type: String
     street1: String
     street2: String
@@ -29,9 +64,16 @@ type Address {
 }
 
 type Phone {
+    id: ID!
     type: String
     number: String
     countryCode: String
+}
+
+type DeleteUser {
+    success: Boolean!
+    message: String!
+    id : ID
 }
 
 input SearchInput {
@@ -39,3 +81,5 @@ input SearchInput {
     lastName: String
     dateOfBirth: String
 }
+
+

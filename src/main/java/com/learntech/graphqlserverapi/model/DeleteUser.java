@@ -5,15 +5,13 @@ import lombok.Data;
 import java.util.UUID;
 
 /**
- * Phone
+ * DeleteUser
  *
  * @author Uthiraraj Saminathan
  */
 @Data
-public class Phone {
-
+public class DeleteUser {
+    private Boolean success;
+    private String message;
     private UUID id;
-    private String type;
-    private String number;
-    private String countryCode;
 }
