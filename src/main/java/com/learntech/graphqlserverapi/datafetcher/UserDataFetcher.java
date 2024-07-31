@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * UserDataFetcher
@@ -27,6 +28,7 @@ public class UserDataFetcher {
         this.userSearchService = userSearchService;
     }
 
+
     @DgsQuery
     public Mono<List<User>> users(@InputArgument SearchInput searchInput) throws JsonProcessingException {
         log.info("users() Starts");
@@ -38,9 +40,9 @@ public class UserDataFetcher {
     }
 
     @DgsQuery
-    public Mono<User> user(@InputArgument Integer id){
+    public Mono<User> user(@InputArgument UUID id){
         log.info("user() Starts");
         User user = userSearchService.searchById(id);
-        return Mono.just(user);
+        return Mono.justOrEmpty(user);
     }
 }
