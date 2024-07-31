@@ -1,19 +1,25 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '2.7.17'
-	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'org.springframework.boot' version '3.3.2'
+	id 'io.spring.dependency-management' version '1.1.6'
+	id("org.openrewrite.rewrite") version("6.16.4")
 }
 
 group = 'com.learntech'
 version = '1.0.0-SNAPSHOT'
 
+rewrite {
+	activeRecipe("org.openrewrite.java.spring.boot3.UpgradeSpringBoot_3_3")
+}
+
 java {
-	sourceCompatibility = '11'
+	sourceCompatibility = '17'
 }
 
 dependencyManagement {
 	imports {
-		mavenBom 'com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:5.5.5'
+		//mavenBom 'com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:5.5.5'
+		mavenBom("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:latest.release")
 	}
 }
 
@@ -30,8 +36,9 @@ repositories {
 dependencies {
 	//implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:5.5.5"))
-	implementation 'com.netflix.graphql.dgs:graphql-dgs-webflux-starter:5.5.5'
+	//implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:5.5.5"))
+	//implementation 'com.netflix.graphql.dgs:graphql-dgs-webflux-starter:5.5.5'
+	implementation 'com.netflix.graphql.dgs:graphql-dgs-webflux-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'com.h2database:h2'
 	compileOnly 'org.projectlombok:lombok'
@@ -39,6 +46,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
+	rewrite("org.openrewrite.recipe:rewrite-spring:5.15.0")
 }
 
 tasks.named('test') {

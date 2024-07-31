@@ -4,10 +4,10 @@ package com.learntech.graphqlserverapi.entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Type;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,7 +26,7 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(generator = "UUID") //Let the underlying DB take care of UUID creation.
-    @Type(type = "uuid-char")
+    @JdbcTypeCode(java.sql.Types.VARCHAR)
     private UUID id;
 
     @Column(name = "first_name", nullable = false)
