@@ -3,10 +3,10 @@ package com.learntech.graphqlserverapi.entity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Type;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -23,7 +23,7 @@ public class AddressEntity {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @Type(type = "uuid-char")
+    @JdbcTypeCode(java.sql.Types.VARCHAR)
     private UUID id;
 
     @Column(name = "type", nullable = false)
