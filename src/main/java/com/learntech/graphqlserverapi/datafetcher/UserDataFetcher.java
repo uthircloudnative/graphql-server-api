@@ -43,6 +43,6 @@ public class UserDataFetcher {
     public Mono<User> user(@InputArgument UUID id){
         log.info("user() Starts");
         User user = userSearchService.searchById(id);
-        return Mono.just(user);
+        return Mono.justOrEmpty(user);
     }
 }

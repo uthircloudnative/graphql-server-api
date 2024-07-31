@@ -45,10 +45,27 @@ public class UserSearchServiceImpl implements UserSearchService {
         user.setPhone(buildPhone(userEntity.getPhones()));
         return user;
     }
-    /**
-     * @return
-     */
-    //@Transactional
+
+    private List<Address> buildAddress(List<AddressEntity> addressEntities){
+        List<Address> addresses = new ArrayList<>();
+        addressEntities.forEach(addressEntity -> {
+            Address address = new Address();
+            BeanUtils.copyProperties(addressEntity, address);
+            addresses.add(address);
+        });
+        return addresses;
+    }
+
+    private List<Phone> buildPhone(List<PhoneEntity> phoneEntities){
+        List<Phone> phones = new ArrayList<>();
+        phoneEntities.forEach(phoneEntity -> {
+            Phone phone = new Phone();
+            BeanUtils.copyProperties(phoneEntity, phone);
+            phones.add(phone);
+        });
+        return phones;
+    }
+
     @Override
     public List<User> searchUser(SearchInput searchInput) {
         log.info("searchUser Starts");
@@ -81,23 +98,5 @@ public class UserSearchServiceImpl implements UserSearchService {
         BeanUtils.copyProperties(userEntity, user);
         return user;
     }
-    private List<Address> buildAddress(List<AddressEntity> addressEntities){
-        List<Address> addresses = new ArrayList<>();
-        addressEntities.forEach(addressEntity -> {
-            Address address = new Address();
-            BeanUtils.copyProperties(addressEntity, address);
-            addresses.add(address);
-        });
-        return addresses;
-    }
 
-    private List<Phone> buildPhone(List<PhoneEntity> phoneEntities){
-        List<Phone> phones = new ArrayList<>();
-        phoneEntities.forEach(phoneEntity -> {
-            Phone phone = new Phone();
-            BeanUtils.copyProperties(phoneEntity, phone);
-            phones.add(phone);
-        });
-        return phones;
-    }
 }
